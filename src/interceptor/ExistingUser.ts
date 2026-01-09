@@ -8,7 +8,7 @@ export class ExistingUser implements NestInterceptor {
   async intercept(context: ExecutionContext, next: CallHandler): Promise<Observable<any>> {
     const request = context.switchToHttp().getRequest();
     const { email } = request.body;
-    const existingUser = await this.userService.findUsers(email);
+    const existingUser = await this.userService.findUserByEmail(email);
     if (existingUser) {
       throw new Error('User already exists');
     }

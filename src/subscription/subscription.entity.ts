@@ -1,20 +1,20 @@
 import { Package } from '../package/package.entity';
 import { User } from './../user/user.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryColumn } from "typeorm";
 
 @Entity()
 export class Subscription {
-  @PrimaryGeneratedColumn()
-  id!: number;
+  @PrimaryColumn()
+  id!: string;
 
   @Column()
-  startDate!: Date;
+  startDate!: string;
 
   @Column()
-  userId!: number;
+  userId!: string;
 
   @Column()
-  packId!: number;
+  packId!: string;
 
   @Column()
   duration!: string;
@@ -23,5 +23,5 @@ export class Subscription {
   user!: User;
 
   @ManyToOne(() => Package, (pack) => pack.subscription)
-  package!: Package;
+  pack!: Package;
 }

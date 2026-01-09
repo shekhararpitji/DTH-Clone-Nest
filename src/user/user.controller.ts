@@ -1,28 +1,15 @@
-import { Body, Controller, Delete, Get, Param } from '@nestjs/common';
+import { Controller, Delete, Get, Param } from '@nestjs/common';
 import { UserService } from './user.service';
-import * as UserDto from './dto/index';
-import { User } from './user.entity';
 import { DeleteResult } from 'typeorm';
-
 
 @Controller('/auth/user')
 export class UserController {
 constructor(private userService:UserService){}
 
 
-  // @Post('/signup')
-  //   store(@Body() userData:UserDto.CreateUserDto){
-      
-  //     return this.userService.createUser(userData);
-  //   }
-
-  // @Post('/login')
-  async login(@Body('user') loginUserdto: UserDto.LoginUserDto): Promise<User> {
-      return this.userService.login(loginUserdto);
-    }
   
   @Get('/get/:userId')
-  getUser(@Param()param:{userId:string}): Promise<User>{
+  getUser(@Param()param:{userId:string}){
     const {userId}=param;
     return this.userService.findUsers(userId) ;
   }
@@ -33,8 +20,8 @@ constructor(private userService:UserService){}
     return this.userService.delete(email) ;
   }
 
-  @Get('/')
+  @Get('/get')
   findAll(){
-    return this.userService.findAll() ;
+    return this.userService.findAll();
   }
 }

@@ -1,9 +1,11 @@
 export class CreateChannelDto {
-  id: number;
+  id: string;
 
   name: string;
 
   category: string;
 
   description: string;
+
+  packId:string;
 }

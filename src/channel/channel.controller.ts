@@ -5,29 +5,29 @@ import { DeleteResult } from 'typeorm';
 import { ChannelService } from './channel.service';
 
 
-@Controller('channel')
+@Controller('/auth/channel')
 export class ChannelController {
     constructor(private channelService:ChannelService){}
     @Post('/create')
         create(@Body() channelData:ChannelDto.CreateChannelDto){
           
-          return this.channelService.createChannel(channelData);
+          return this.channelService.createChannel(channelData) ;
         }
 
         @Get('/:channelId')
-        getUser(@Param()param:{channelId:number}): Promise<Channel>{
+        getUser(@Param()param:{channelId:string}): Promise<Channel>{
           const {channelId}=param;
           return this.channelService.findChannel(channelId) ;
         }
       
         @Delete('/:channelId')
-        delete(@Param()param:{channelId:number}): Promise<DeleteResult>{
+        delete(@Param()param:{channelId:string}): Promise<DeleteResult>{
           const {channelId}=param;
-          return this.channelService.delete(+channelId) ;
+          return this.channelService.delete(channelId) ;
         }
       
         @Get('/')
         findAll(){
-          return this.channelService.findAll() ;
+          return this.channelService.findAllChannel() ;
         }
 }

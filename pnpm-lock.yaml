@@ -26,6 +26,9 @@ dependencies:
   '@nestjs/typeorm':
     specifier: ^10.0.1
     version: 10.0.1(@nestjs/common@10.3.0)(@nestjs/core@10.3.0)(reflect-metadata@0.1.14)(rxjs@7.8.1)(typeorm@0.3.17)
+  '@types/jsonwebtoken':
+    specifier: ^9.0.5
+    version: 9.0.5
   argon2:
     specifier: ^0.31.2
     version: 0.31.2

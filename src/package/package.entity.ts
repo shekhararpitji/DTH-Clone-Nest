@@ -3,15 +3,15 @@ import {
     Entity,
     JoinTable,
     OneToMany,
-    PrimaryGeneratedColumn,
+    PrimaryColumn,
   } from "typeorm";
   import { Subscription } from './../subscription/subscription.entity';
   import { Channel } from "../channel/channel.entity";
   
   @Entity()
   export class Package {
-    @PrimaryGeneratedColumn()
-    id!: number;
+    @PrimaryColumn()
+    id!: string;
   
     @Column()
     name!: string;
@@ -29,7 +29,7 @@ import {
     @JoinTable()
     channels!: Channel[];
   
-    @OneToMany(() => Subscription, (subscription) => subscription.package)
+    @OneToMany(() => Subscription, (subscription) => subscription.pack)
     subscription!: Subscription[];
   }
   

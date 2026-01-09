@@ -5,7 +5,7 @@ import * as PackDto from './dto/index';
 import { DeleteResult } from 'typeorm';
 
 
-@Controller('package')
+@Controller('/auth/package')
 export class PackageController {
     constructor(private packService:PackageService){}
     @Post('/create')
@@ -15,15 +15,15 @@ export class PackageController {
         }
 
         @Get('/:packId')
-        getUser(@Param()param:{packId:number}): Promise<Package>{
+        getUser(@Param()param:{packId:string}): Promise<Package>{
           const {packId}=param;
           return this.packService.findPack(packId) ;
         }
       
         @Delete('/:packId')
-        delete(@Param()param:{packId:number}): Promise<DeleteResult>{
+        delete(@Param()param:{packId:string}): Promise<DeleteResult>{
           const {packId}=param;
-          return this.packService.delete(+packId) ;
+          return this.packService.delete(packId) ;
         }
       
         @Get('/')

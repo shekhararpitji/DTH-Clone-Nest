@@ -1,5 +1,5 @@
 export class CreatePackDto {
-readonly id: number;
+ id: string;
   
 readonly name: string;
 

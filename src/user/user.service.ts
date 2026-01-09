@@ -10,15 +10,23 @@ import * as uuid from 'uuid';
 export class UserService {
     constructor(@InjectRepository(User) private userRepository:Repository<User>){}
   
-   async findUsers(id:string){
-        const user= await this.userRepository.findOne({where:{id}});
-        return user;
-    }
 
     async findUserByEmail(email:string){
       const user= await this.userRepository.findOne({where:{email}});
       return user;
   }
+  
+   async findUsers(id:string){
+        const user= await this.userRepository.findOne({where:{id}});
+       const userData ={id:user.id,
+        email:user.email,
+      name:user.name,
+    role:user.role,
+  mobile:user.mobile_number};
+  return userData;
+    }
+
+    
 
     async findAll(): Promise<User[]> {
         return await this.userRepository.find();
@@ -38,9 +46,9 @@ export class UserService {
     async login({email, password}: UserDto.LoginUserDto): Promise<User> {
         const user = await this.userRepository.findOne({where:{email}});
         if (!user) {
+          
           return null;
         }
-    
         if (await argon2.verify(user.password, password)) {
           return user;
         }
